@@ -5,5 +5,5 @@ pluginManagement {
     }
     
 }
-rootProject.name = "SimpleTicTacToe"
+rootProject.name = "TicTacToeKotlinCompose"
 

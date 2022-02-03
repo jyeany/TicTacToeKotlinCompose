@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
@@ -28,6 +30,7 @@ class TicTacToeDisplay(val gameManager: GameManager) {
         Button(
             attrs = {
                 classes("mui-btn", "mui-btn--primary", "mui-btn--raised")
+                style { width(60.px) }
                 onClick { spaceChar = gameManager.playSquare(i, j) }
             }
         ) {
