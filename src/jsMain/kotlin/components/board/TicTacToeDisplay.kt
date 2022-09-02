@@ -1,4 +1,4 @@
-package components
+package components.board
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
