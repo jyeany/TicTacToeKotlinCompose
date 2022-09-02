@@ -15,7 +15,7 @@ class WelcomeScreen {
             welcomeHeaders()
             gameModeButton("Random", "mui-btn--primary")
             gameModeButton("To Win", "mui-btn--accent")
-            gameModeButton("Not At All", "mui-btn--danger")
+            gameModeButton("Off", "mui-btn--danger")
         }
     }
 
@@ -50,11 +50,8 @@ class WelcomeScreen {
             Div(
                 attrs = { classes("mui-col-md-4") }
             ) {
-                H1 {
-                    Text("Welcome")
-                }
                 H2 {
-                    Text("How Should The Computer Play?")
+                    Text("Computer Player Mode:")
                 }
             }
             spacerDiv()
