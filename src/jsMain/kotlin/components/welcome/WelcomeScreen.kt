@@ -4,23 +4,25 @@ import androidx.compose.runtime.Composable
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.*
+import routing.Route
 
 class WelcomeScreen {
 
     @Composable
-    fun welcome() {
+    fun welcome(fnUpdateRoute: (r: Route) -> Unit) {
         Div(
             attrs = { classes("mui-container-fluid") }
         ) {
             welcomeHeaders()
-            gameModeButton("Random", "mui-btn--primary")
-            gameModeButton("To Win", "mui-btn--accent")
-            gameModeButton("Off", "mui-btn--danger")
+            val fnClick = { fnUpdateRoute.invoke(Route.GAME) }
+            gameModeButton("Random", "mui-btn--primary") { fnClick.invoke() }
+            gameModeButton("To Win", "mui-btn--accent") { fnClick.invoke() }
+            gameModeButton("Off", "mui-btn--danger") { fnClick.invoke() }
         }
     }
 
     @Composable
-    private fun gameModeButton(btnText: String, btnTypeCss: String) {
+    private fun gameModeButton(btnText: String, btnTypeCss: String, fnClick: () -> Unit) {
         Div(
             attrs = { classes("mui-row") }
         ) {
@@ -32,6 +34,7 @@ class WelcomeScreen {
                     attrs = {
                         classes("mui-btn", btnTypeCss, "mui-btn--raised")
                         style { width(200.px) }
+                        onClick { fnClick.invoke() }
                     }
                 ) {
                     Text(btnText)
@@ -56,7 +59,6 @@ class WelcomeScreen {
             }
             spacerDiv()
         }
-
     }
 
     @Composable
