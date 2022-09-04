@@ -7,7 +7,7 @@ class GameManager {
         const val cols: Int = 3
     }
 
-    val gameBoard = Array(rows) {CharArray(cols)}
+    val gameBoard = Array(rows) { CharArray(cols) }
     var currentPlayer = 'X'
 
     init {

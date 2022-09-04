@@ -1,4 +1,5 @@
-import services.GameManager
+package services
+
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
