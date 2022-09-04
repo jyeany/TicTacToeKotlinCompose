@@ -65,7 +65,37 @@ class GameWinDetector {
     }
     
     private fun checkDiagonal(gameBoard: Array<CharArray>): Char? {
-        return null
+        val rightToLeft = checkSpaces(
+            gameBoard[0][2],
+            gameBoard[1][1],
+            gameBoard[2][0]
+        )
+        return checkSpaces(
+            gameBoard[0][0],
+            gameBoard[1][1],
+            gameBoard[2][2]
+        ) ?: rightToLeft
+    }
+
+    private fun checkSpaces(one: Char, two: Char, three: Char): Char? {
+        var xCount = 0
+        var oCount = 0
+        val chars = arrayOf(one, two, three)
+        chars.forEach {
+            if (it == 'X') {
+                xCount += 1
+            }
+            if (it == 'O') {
+                oCount += 1
+            }
+        }
+        return if (xCount == THREE) {
+            'X'
+        } else if (oCount == THREE) {
+            'O'
+        } else {
+            null
+        }
     }
     
 }

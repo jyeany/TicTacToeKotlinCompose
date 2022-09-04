@@ -67,6 +67,28 @@ class GameWinDetectorTest {
         assertEquals('O', winner)
     }
 
+    @Test
+    fun checkDiagonalRightToLeft() {
+        val board = arrayOf(
+            charArrayOf('X', 'O', 'X'),
+            charArrayOf('X', 'X', 'O'),
+            charArrayOf('X', 'O', 'O')
+        )
+        val winner = gameWinDetector.gameWinner(board)
+        assertEquals('X', winner)
+    }
+
+    @Test
+    fun checkDiagonalLeftToRight() {
+        val board = arrayOf(
+            charArrayOf('O', 'X', 'X'),
+            charArrayOf('X', 'O', 'O'),
+            charArrayOf('X', 'X', 'O')
+        )
+        val winner = gameWinDetector.gameWinner(board)
+        assertEquals('O', winner)
+    }
+
     private fun defaultBoard(): Array<CharArray> {
         return arrayOf(
             charArrayOf('-', '-', '-'),
