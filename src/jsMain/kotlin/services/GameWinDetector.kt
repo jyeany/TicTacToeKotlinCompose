@@ -38,7 +38,30 @@ class GameWinDetector {
     }
     
     private fun checkVertical(gameBoard: Array<CharArray>): Char? {
-        return null
+        var winner: Char? = null
+        for (i in 0 until THREE) {
+            var xCount = 0
+            var oCount = 0
+            for (j in 0 until THREE) {
+                val boardPiece = gameBoard[j][i]
+                if (boardPiece == 'O') {
+                    oCount += 1
+                }
+                if (boardPiece == 'X') {
+                    xCount += 1
+                }
+                if (xCount == THREE) {
+                    winner = 'X'
+                }
+                if (oCount == THREE) {
+                    winner = 'O'
+                }
+            }
+            if (winner != null) {
+                break
+            }
+        }
+        return winner
     }
     
     private fun checkDiagonal(gameBoard: Array<CharArray>): Char? {
