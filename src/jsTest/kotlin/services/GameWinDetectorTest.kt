@@ -10,7 +10,7 @@ class GameWinDetectorTest {
     private val gameWinDetector = GameWinDetector()
 
     @Test
-    fun horizontalDefaultBoard() {
+    fun gameWinnerDefaultBoard() {
         val board = defaultBoard()
         val winner = gameWinDetector.gameWinner(board)
         assertNull(winner)
@@ -36,13 +36,6 @@ class GameWinDetectorTest {
         )
         val winner = gameWinDetector.gameWinner(board)
         assertEquals('O', winner)
-    }
-
-    @Test
-    fun verticalDefaultBoard() {
-        val board = defaultBoard()
-        val winner = gameWinDetector.gameWinner(board)
-        assertNull(winner)
     }
 
     @Test
