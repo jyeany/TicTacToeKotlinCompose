@@ -1,6 +1,7 @@
 package components.welcome
 
 import androidx.compose.runtime.Composable
+import components.spacerDiv
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.*
@@ -59,13 +60,6 @@ class WelcomeScreen {
             }
             spacerDiv()
         }
-    }
-
-    @Composable
-    private fun spacerDiv() {
-        Div(
-            attrs = {classes("mui-col-md-4")}
-        ) {}
     }
 
 }

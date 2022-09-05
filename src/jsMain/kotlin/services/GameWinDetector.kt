@@ -2,7 +2,7 @@ package services
 
 class GameWinDetector {
 
-    private val THREE = 3
+    private val three = 3
 
     fun gameWinner(gameBoard: Array<CharArray>): Char? {
         val diagonal = checkDiagonal(gameBoard)
@@ -23,10 +23,10 @@ class GameWinDetector {
                 if (gameBoard[i][j] == 'O') {
                     oCount += 1
                 }
-                if (xCount == THREE) {
+                if (xCount == three) {
                     winner = 'X'
                 }
-                if (oCount == THREE) {
+                if (oCount == three) {
                     winner = 'O'
                 }
             }
@@ -39,10 +39,10 @@ class GameWinDetector {
     
     private fun checkVertical(gameBoard: Array<CharArray>): Char? {
         var winner: Char? = null
-        for (i in 0 until THREE) {
+        for (i in 0 until three) {
             var xCount = 0
             var oCount = 0
-            for (j in 0 until THREE) {
+            for (j in 0 until three) {
                 val boardPiece = gameBoard[j][i]
                 if (boardPiece == 'O') {
                     oCount += 1
@@ -50,10 +50,10 @@ class GameWinDetector {
                 if (boardPiece == 'X') {
                     xCount += 1
                 }
-                if (xCount == THREE) {
+                if (xCount == three) {
                     winner = 'X'
                 }
-                if (oCount == THREE) {
+                if (oCount == three) {
                     winner = 'O'
                 }
             }
@@ -89,9 +89,9 @@ class GameWinDetector {
                 oCount += 1
             }
         }
-        return if (xCount == THREE) {
+        return if (xCount == this.three) {
             'X'
-        } else if (oCount == THREE) {
+        } else if (oCount == this.three) {
             'O'
         } else {
             null
