@@ -2,16 +2,17 @@ package components.board
 
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.web.dom.Div
+import routing.Route
 
 class CenterLayout(private val ticTacToeDisplay: TicTacToeDisplay) {
 
     @Composable
-    fun centeredLayout() {
+    fun centeredLayout(updateRouteFn: (r: Route) -> Unit) {
         Div(
             attrs = { classes("mui-container-fluid") }
         ) {
             headerRow()
-            boardRow()
+            boardRow(updateRouteFn)
         }
     }
 
@@ -33,7 +34,7 @@ class CenterLayout(private val ticTacToeDisplay: TicTacToeDisplay) {
     }
 
     @Composable
-    fun boardRow() {
+    fun boardRow(updateRouteFn: (r: Route) -> Unit) {
         Div(
             attrs = { classes("mui-row") }
         ) {
@@ -43,7 +44,7 @@ class CenterLayout(private val ticTacToeDisplay: TicTacToeDisplay) {
             Div(
                 attrs = {classes("mui-col-md-4")}
             ) {
-                ticTacToeDisplay.gameBoard()
+                ticTacToeDisplay.gameBoard(updateRouteFn)
             }
             Div(
                 attrs = {classes("mui-col-md-4")}

@@ -29,7 +29,7 @@ class ViewManager(gameManager: GameManager) {
 
         when (route) {
             Route.WELCOME -> welcomeScreen.welcome(fnUpdateRoute)
-            Route.GAME -> centerLayout.centeredLayout()
+            Route.GAME -> centerLayout.centeredLayout(fnUpdateRoute)
             Route.END_GAME -> H1 { Text("Game Over ")}
         }
     }
