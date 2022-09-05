@@ -2,9 +2,10 @@ package components.endgame
 
 import androidx.compose.runtime.Composable
 import components.spacerDiv
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.H2
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.attributes.disabled
+import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.width
+import org.jetbrains.compose.web.dom.*
 import services.GameManager
 
 class EndGameScreen(
@@ -16,19 +17,53 @@ class EndGameScreen(
         Div(
             attrs = { classes("mui-container-fluid") }
         ) {
+            headerRow()
+            gameBoardRow()
+        }
+    }
+
+    @Composable
+    fun headerRow() {
+        Div(
+            attrs = { classes("mui-row") }
+        ) {
+            spacerDiv()
             Div(
-                attrs = { classes("mui-row") }
+                attrs = { classes("mui-col-md-4") }
             ) {
-                spacerDiv()
-                Div(
-                    attrs = { classes("mui-col-md-4") }
-                ) {
-                    H2 {
-                        Text("Game Winner: ${gameManager.gameWinner}")
-                    }
+                H2 {
+                    Text("Game Winner: ${gameManager.gameWinner}")
                 }
-                spacerDiv()
             }
+            spacerDiv()
+        }
+    }
+
+    @Composable
+    fun gameBoardRow() {
+        Div(
+            attrs = { classes("mui-row") }
+        ) {
+            spacerDiv()
+            Div(
+                attrs = { classes("mui-col-md-4") }
+            ) {
+                gameManager.gameBoard.forEach {
+                    it.forEach { c ->
+                        Button(
+                            attrs = {
+                                classes("mui-btn", "mui-btn--gray", "mui-btn--fab")
+                                style { width(60.px) }
+                                disabled()
+                            }
+                        ) {
+                            Text("$c")
+                        }
+                    }
+                    Br {}
+                }
+            }
+            spacerDiv()
         }
     }
 
