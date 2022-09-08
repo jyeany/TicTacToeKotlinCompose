@@ -27,7 +27,7 @@ class GameManager {
         gameBoard[i][j] = currentPlayer
         val winner = gameWinDetector.gameWinner(gameBoard)
         return if (winner == null) {
-            currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
+            switchCurrentPlayer()
             gameBoard[i][j]
         } else {
             this.gameWinner = winner
@@ -43,7 +43,17 @@ class GameManager {
         }
     }
 
-    fun computerPlaySquare(): MoveModel = computerPlayer.makeMove(gameBoard)
+    fun computerPlaySquare(): MoveModel {
+        val move = computerPlayer.makeMove(gameBoard)
+        gameBoard[move.x][move.y] = move.c
+        switchCurrentPlayer()
+        return move
+    }
+
     fun hasComputerPlayer(): Boolean = computerPlayer !is NoopCp
+
+    private fun switchCurrentPlayer() {
+        currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
+    }
 
 }

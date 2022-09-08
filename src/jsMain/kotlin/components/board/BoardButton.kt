@@ -22,8 +22,10 @@ class BoardButton(private val gameManager: GameManager) {
                 classes("mui-btn", btnStyle, "mui-btn--fab")
                 style { width(60.px) }
                 onClick {
-                    spaceChar = gameManager.playSquare(i, j)
-                    updateFn.invoke()
+                    if (spaceChar == '-') {
+                        spaceChar = gameManager.playSquare(i, j)
+                        updateFn.invoke()
+                    }
                 }
             }
         ) {
