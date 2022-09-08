@@ -12,7 +12,7 @@ import services.GameManager
 
 class BoardButton(private val gameManager: GameManager) {
 
-    private var spaceChar: Char by mutableStateOf('-')
+    var spaceChar: Char by mutableStateOf('-')
 
     @Composable
     fun boardButton(i: Int, j: Int, updateFn: () -> Unit) {

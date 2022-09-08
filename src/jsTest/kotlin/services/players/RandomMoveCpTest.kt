@@ -1,5 +1,6 @@
-package services
+package services.players
 
+import services.players.RandomMoveCp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

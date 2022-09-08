@@ -12,12 +12,18 @@ import services.GameManager
 
 class TicTacToeDisplay(private val gameManager: GameManager) {
 
+    private var boardMap = mutableMapOf<Pair<Int, Int>, BoardButton>()
+
     @Composable
     fun gameBoard(updateRouteFn: (r: Route) -> Unit) {
         var currentMove by mutableStateOf('X')
         val updateFn = {
             if (gameManager.gameWinner == null) {
                 currentMove = gameManager.currentPlayer
+                if (gameManager.hasComputerPlayer()) {
+                    val move = gameManager.computerPlaySquare()
+                    boardMap[Pair(move.x, move.y)]?.spaceChar = move.c
+                }
             } else {
                 updateRouteFn.invoke(Route.END_GAME)
             }
@@ -29,7 +35,9 @@ class TicTacToeDisplay(private val gameManager: GameManager) {
             for (i in 0 until GameManager.rows) {
                 Div {
                     for (j in 0 until GameManager.cols) {
-                        BoardButton(gameManager).boardButton(i, j, updateFn)
+                        val boardButton = BoardButton(gameManager)
+                        boardMap[Pair(i, j)] = boardButton
+                        boardButton.boardButton(i, j, updateFn)
                     }
                 }
             }

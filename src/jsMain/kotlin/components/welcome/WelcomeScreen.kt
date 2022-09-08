@@ -6,8 +6,12 @@ import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.*
 import routing.Route
+import services.GameManager
+import services.players.GameMode
 
-class WelcomeScreen {
+class WelcomeScreen(
+    private val gameManager: GameManager
+) {
 
     @Composable
     fun welcome(fnUpdateRoute: (r: Route) -> Unit) {
@@ -16,9 +20,18 @@ class WelcomeScreen {
         ) {
             welcomeHeaders()
             val fnClick = { fnUpdateRoute.invoke(Route.GAME) }
-            gameModeButton("Random", "mui-btn--primary") { fnClick.invoke() }
-            gameModeButton("To Win", "mui-btn--accent") { fnClick.invoke() }
-            gameModeButton("Off", "mui-btn--danger") { fnClick.invoke() }
+            gameModeButton("Random", "mui-btn--primary") {
+                gameManager.setGameMode(GameMode.RANDOM)
+                fnClick.invoke()
+            }
+            gameModeButton("To Win", "mui-btn--accent") {
+                gameManager.setGameMode(GameMode.TO_WIN)
+                fnClick.invoke()
+            }
+            gameModeButton("Off", "mui-btn--danger") {
+                gameManager.setGameMode(GameMode.OFF)
+                fnClick.invoke()
+            }
         }
     }
 

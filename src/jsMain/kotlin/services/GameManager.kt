@@ -1,5 +1,7 @@
 package services
 
+import services.players.*
+
 class GameManager {
 
     companion object {
@@ -10,6 +12,7 @@ class GameManager {
     val gameBoard = Array(rows) { CharArray(cols) }
     var currentPlayer = 'X'
     var gameWinner: Char? = null
+    private var computerPlayer: IComputerPlayer = NoopCp()
     private val gameWinDetector = GameWinDetector()
 
     init {
@@ -27,10 +30,20 @@ class GameManager {
             currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
             gameBoard[i][j]
         } else {
-            println("Game Won")
             this.gameWinner = winner
             winner
         }
     }
+
+    fun setGameMode(gameMode: GameMode) {
+        this.computerPlayer = when(gameMode) {
+            GameMode.OFF -> NoopCp()
+            GameMode.RANDOM -> RandomMoveCp()
+            GameMode.TO_WIN -> ToWinCp()
+        }
+    }
+
+    fun computerPlaySquare(): MoveModel = computerPlayer.makeMove(gameBoard)
+    fun hasComputerPlayer(): Boolean = computerPlayer !is NoopCp
 
 }

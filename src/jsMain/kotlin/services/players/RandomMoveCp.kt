@@ -1,5 +1,6 @@
-package services
+package services.players
 
+import services.MoveModel
 import kotlin.js.Date
 import kotlin.random.Random
 
