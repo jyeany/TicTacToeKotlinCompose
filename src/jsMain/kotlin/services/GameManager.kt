@@ -46,7 +46,12 @@ class GameManager {
     fun computerPlaySquare(): MoveModel {
         val move = computerPlayer.makeMove(gameBoard)
         gameBoard[move.x][move.y] = move.c
-        switchCurrentPlayer()
+        val winner = gameWinDetector.gameWinner(gameBoard)
+        if (winner == null) {
+            switchCurrentPlayer()
+        } else {
+            this.gameWinner = winner
+        }
         return move
     }
 

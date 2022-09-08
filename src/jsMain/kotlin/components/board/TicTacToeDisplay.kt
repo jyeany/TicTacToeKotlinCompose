@@ -18,11 +18,12 @@ class TicTacToeDisplay(private val gameManager: GameManager) {
     fun gameBoard(updateRouteFn: (r: Route) -> Unit) {
         var currentMove by mutableStateOf('X')
         val updateFn = {
+            if (gameManager.hasComputerPlayer()) {
+                val move = gameManager.computerPlaySquare()
+                boardMap[Pair(move.x, move.y)]?.spaceChar = move.c
+            }
+
             if (gameManager.gameWinner == null) {
-                if (gameManager.hasComputerPlayer()) {
-                    val move = gameManager.computerPlaySquare()
-                    boardMap[Pair(move.x, move.y)]?.spaceChar = move.c
-                }
                 currentMove = gameManager.currentPlayer
             } else {
                 updateRouteFn.invoke(Route.END_GAME)
