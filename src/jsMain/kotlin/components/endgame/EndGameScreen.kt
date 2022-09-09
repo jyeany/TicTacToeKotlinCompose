@@ -6,6 +6,7 @@ import org.jetbrains.compose.web.attributes.disabled
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.*
+import routing.Route
 import services.GameManager
 
 class EndGameScreen(
@@ -13,12 +14,13 @@ class EndGameScreen(
 ) {
 
     @Composable
-    fun endGameScreen() {
+    fun endGameScreen(updateRouteFn: (r: Route) -> Unit) {
         Div(
             attrs = { classes("mui-container-fluid") }
         ) {
             headerRow()
             gameBoardRow()
+            gameOverButtons(updateRouteFn)
         }
     }
 
@@ -61,6 +63,31 @@ class EndGameScreen(
                         }
                     }
                     Br {}
+                }
+            }
+            spacerDiv()
+        }
+    }
+
+    @Composable
+    fun gameOverButtons(updateRouteFn: (r: Route) -> Unit) {
+        Div(
+            attrs = { classes("mui-row") }
+        ) {
+            spacerDiv()
+            Div(
+                attrs = { classes("mui-col-md-4")}
+            ) {
+                Button(
+                    attrs = {
+                        classes("mui-btn", "mui-btn--primary", "mui-btn--raised")
+                        onClick {
+                            gameManager.resetGame()
+                            updateRouteFn.invoke(Route.WELCOME)
+                        }
+                    }
+                ) {
+                    Text("Play Again")
                 }
             }
             spacerDiv()

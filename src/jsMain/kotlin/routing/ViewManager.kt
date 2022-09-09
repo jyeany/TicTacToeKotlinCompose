@@ -28,7 +28,7 @@ class ViewManager(gameManager: GameManager) {
         when (route) {
             Route.WELCOME -> welcomeScreen.welcome(fnUpdateRoute)
             Route.GAME -> centerLayout.centeredLayout(fnUpdateRoute)
-            Route.END_GAME -> endGameScreen.endGameScreen()
+            Route.END_GAME -> endGameScreen.endGameScreen(fnUpdateRoute)
         }
     }
 

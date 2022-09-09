@@ -16,11 +16,7 @@ class GameManager {
     private val gameWinDetector = GameWinDetector()
 
     init {
-        for (i in 0..2) {
-            for (j in 0..2) {
-                gameBoard[i][j] = '-'
-            }
-        }
+        resetGameBoard()
     }
 
     fun playSquare(i: Int, j: Int): Char {
@@ -55,10 +51,25 @@ class GameManager {
         return move
     }
 
+    fun resetGame() {
+        resetGameBoard()
+        currentPlayer = 'X'
+        gameWinner = null
+        computerPlayer = NoopCp()
+    }
+
     fun hasComputerPlayer(): Boolean = computerPlayer !is NoopCp
 
     private fun switchCurrentPlayer() {
         currentPlayer = if (currentPlayer == 'X') 'O' else 'X'
+    }
+
+    private fun resetGameBoard() {
+        for (i in 0..2) {
+            for (j in 0..2) {
+                gameBoard[i][j] = '-'
+            }
+        }
     }
 
 }
