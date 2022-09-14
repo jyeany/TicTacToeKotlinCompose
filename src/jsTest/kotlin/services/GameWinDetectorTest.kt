@@ -2,7 +2,6 @@ package services
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 class GameWinDetectorTest {
 
@@ -79,6 +78,17 @@ class GameWinDetectorTest {
         )
         val winner = gameWinDetector.gameWinner(board)
         assertEquals(GameWinner.O, winner)
+    }
+
+    @Test
+    fun gameDraw() {
+        val board = arrayOf(
+            charArrayOf('X', 'O', 'X'),
+            charArrayOf('O', 'X', 'X'),
+            charArrayOf('O', 'X', 'O')
+        )
+        val winner = gameWinDetector.gameWinner(board)
+        assertEquals(GameWinner.DRAW, winner)
     }
 
     private fun defaultBoard(): Array<CharArray> {

@@ -11,16 +11,45 @@ class GameWinDetector {
             gameWinner = diagonal
         }
 
-        val horizontalWinner = checkHorizontal(gameBoard)
-        if (gameWinner == GameWinner.NONE && horizontalWinner != GameWinner.NONE) {
-            gameWinner = horizontalWinner
+        if (gameWinner == GameWinner.NONE) {
+            val horizontalWinner = checkHorizontal(gameBoard)
+            if (horizontalWinner != GameWinner.NONE) {
+                gameWinner = horizontalWinner
+            }
         }
 
-        val verticalWinner = checkVertical(gameBoard)
-        if (gameWinner == GameWinner.NONE && verticalWinner != GameWinner.NONE) {
-            return verticalWinner
+        if (gameWinner == GameWinner.NONE) {
+            val verticalWinner = checkVertical(gameBoard)
+            if (verticalWinner != GameWinner.NONE) {
+                gameWinner = verticalWinner
+            }
+
         }
+
+        if (gameWinner == GameWinner.NONE) {
+            val draw = checkDraw(gameBoard)
+            if (draw == GameWinner.DRAW) {
+                gameWinner = draw
+            }
+        }
+
         return gameWinner
+    }
+
+    private fun checkDraw(gameBoard: Array<CharArray>): GameWinner {
+        var playableCount = 0
+        for (i in gameBoard.indices) {
+            for (j in 0 until three) {
+                if (gameBoard[i][j] == '-') {
+                    playableCount += 1
+                }
+            }
+        }
+        return if (playableCount == 0) {
+            GameWinner.DRAW
+        } else {
+            GameWinner.NONE
+        }
     }
     
     private fun checkHorizontal(gameBoard: Array<CharArray>): GameWinner {
