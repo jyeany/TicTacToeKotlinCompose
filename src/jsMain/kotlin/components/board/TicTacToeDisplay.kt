@@ -9,6 +9,7 @@ import org.jetbrains.compose.web.dom.H2
 import org.jetbrains.compose.web.dom.Text
 import routing.Route
 import services.GameManager
+import services.GameWinner
 
 class TicTacToeDisplay(private val gameManager: GameManager) {
 
@@ -23,7 +24,7 @@ class TicTacToeDisplay(private val gameManager: GameManager) {
                 boardMap[Pair(move.x, move.y)]?.spaceChar = move.c
             }
 
-            if (gameManager.gameWinner == null) {
+            if (gameManager.gameWinner == GameWinner.NONE) {
                 currentMove = gameManager.currentPlayer
             } else {
                 updateRouteFn.invoke(Route.END_GAME)

@@ -12,7 +12,7 @@ class GameWinDetectorTest {
     fun gameWinnerDefaultBoard() {
         val board = defaultBoard()
         val winner = gameWinDetector.gameWinner(board)
-        assertNull(winner)
+        assertEquals(GameWinner.NONE, winner)
     }
 
     @Test
@@ -23,7 +23,7 @@ class GameWinDetectorTest {
             charArrayOf('-', '-', '-')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('X', winner)
+        assertEquals(GameWinner.X, winner)
     }
 
     @Test
@@ -34,7 +34,7 @@ class GameWinDetectorTest {
             charArrayOf('O', 'O', 'O')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('O', winner)
+        assertEquals(GameWinner.O, winner)
     }
 
     @Test
@@ -45,7 +45,7 @@ class GameWinDetectorTest {
             charArrayOf('X', 'O', '-')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('X', winner)
+        assertEquals(GameWinner.X, winner)
     }
 
     @Test
@@ -56,7 +56,7 @@ class GameWinDetectorTest {
             charArrayOf('-', 'O', 'O')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('O', winner)
+        assertEquals(GameWinner.O, winner)
     }
 
     @Test
@@ -67,7 +67,7 @@ class GameWinDetectorTest {
             charArrayOf('X', 'O', 'O')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('X', winner)
+        assertEquals(GameWinner.X, winner)
     }
 
     @Test
@@ -78,7 +78,7 @@ class GameWinDetectorTest {
             charArrayOf('X', 'X', 'O')
         )
         val winner = gameWinDetector.gameWinner(board)
-        assertEquals('O', winner)
+        assertEquals(GameWinner.O, winner)
     }
 
     private fun defaultBoard(): Array<CharArray> {

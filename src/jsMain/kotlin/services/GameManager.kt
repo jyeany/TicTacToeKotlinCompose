@@ -11,7 +11,7 @@ class GameManager {
 
     val gameBoard = Array(rows) { CharArray(cols) }
     var currentPlayer = 'X'
-    var gameWinner: Char? = null
+    var gameWinner = GameWinner.NONE
     private var computerPlayer: IComputerPlayer = NoopCp()
     private val gameWinDetector = GameWinDetector()
 
@@ -22,12 +22,12 @@ class GameManager {
     fun playSquare(i: Int, j: Int): Char {
         gameBoard[i][j] = currentPlayer
         val winner = gameWinDetector.gameWinner(gameBoard)
-        return if (winner == null) {
+        return if (winner == GameWinner.NONE) {
             switchCurrentPlayer()
             gameBoard[i][j]
         } else {
             this.gameWinner = winner
-            winner
+            winnerToChar(winner)
         }
     }
 
@@ -43,7 +43,7 @@ class GameManager {
         val move = computerPlayer.makeMove(gameBoard)
         gameBoard[move.x][move.y] = move.c
         val winner = gameWinDetector.gameWinner(gameBoard)
-        if (winner == null) {
+        if (winner == GameWinner.NONE) {
             switchCurrentPlayer()
         } else {
             this.gameWinner = winner
@@ -54,7 +54,7 @@ class GameManager {
     fun resetGame() {
         resetGameBoard()
         currentPlayer = 'X'
-        gameWinner = null
+        gameWinner = GameWinner.NONE
         computerPlayer = NoopCp()
     }
 
