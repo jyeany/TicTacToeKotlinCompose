@@ -9,10 +9,11 @@ fun charToWinner(c: Char): GameWinner {
     }
 }
 
-fun winnerToChar(gameWinner: GameWinner): Char {
+fun winnerToChar(gameWinner: GameWinner,
+                 currentPlayer: Char = '-'): Char {
     return when (gameWinner) {
         GameWinner.X -> 'X'
         GameWinner.O -> 'O'
-        else -> '-'
+        else -> currentPlayer
     }
 }

@@ -27,7 +27,7 @@ class GameManager {
             gameBoard[i][j]
         } else {
             this.gameWinner = winner
-            winnerToChar(winner)
+            winnerToChar(winner, currentPlayer)
         }
     }
 
