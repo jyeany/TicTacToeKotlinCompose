@@ -61,7 +61,7 @@ class GameWinDetectorTest {
     @Test
     fun checkDiagonalRightToLeft() {
         val board = arrayOf(
-            charArrayOf('X', 'O', 'X'),
+            charArrayOf('O', 'O', 'X'),
             charArrayOf('X', 'X', 'O'),
             charArrayOf('X', 'O', 'O')
         )

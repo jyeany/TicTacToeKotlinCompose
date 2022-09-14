@@ -106,16 +106,27 @@ class GameWinDetector {
     }
     
     private fun checkDiagonal(gameBoard: Array<CharArray>): GameWinner {
+        var gameWinner = GameWinner.NONE
         val rightToLeft = checkSpaces(
             gameBoard[0][2],
             gameBoard[1][1],
             gameBoard[2][0]
         )
-        return checkSpaces(
-            gameBoard[0][0],
-            gameBoard[1][1],
-            gameBoard[2][2]
-        ) ?: rightToLeft
+        if (rightToLeft != GameWinner.NONE) {
+            gameWinner = rightToLeft
+        }
+
+        if (gameWinner == GameWinner.NONE) {
+            val leftToRight = checkSpaces(
+                gameBoard[0][0],
+                gameBoard[1][1],
+                gameBoard[2][2]
+            )
+            if (leftToRight != GameWinner.NONE) {
+                gameWinner = leftToRight
+            }
+        }
+        return gameWinner
     }
 
     private fun checkSpaces(one: Char, two: Char, three: Char): GameWinner {
