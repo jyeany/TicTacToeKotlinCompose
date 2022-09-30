@@ -1,7 +1,7 @@
 # Tic Tac Toe Kotlin Compose
 
 ## Overview
-Experiment with kotlin compose for javascript by creating a game of tic-tac-toe
+Experiment with kotlin compose for javascript by creating a game of tic-tac-toe.
 
 ## Debugging
 Run With

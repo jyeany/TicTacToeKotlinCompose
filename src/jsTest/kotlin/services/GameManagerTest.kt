@@ -17,4 +17,29 @@ class GameManagerTest {
         }
     }
 
+    @Test
+    fun playSquareGameWonX() {
+        gameManager.currentPlayer = 'X'
+        gameManager.playSquare(1, 0)
+        gameManager.playSquare(0, 0)
+        gameManager.playSquare(1, 1)
+        gameManager.playSquare(0, 1)
+        val result = gameManager.playSquare(1, 2)
+        assertEquals('X', result)
+        assertEquals(GameWinner.X, gameManager.gameWinner)
+    }
+
+    @Test
+    fun playSquareGameWonO() {
+        gameManager.currentPlayer = 'X'
+        gameManager.playSquare(1, 0)
+        gameManager.playSquare(0, 0)
+        gameManager.playSquare(1, 1)
+        gameManager.playSquare(0, 1)
+        gameManager.playSquare(2, 2)
+        val result = gameManager.playSquare(0, 2)
+        assertEquals('O', result)
+        assertEquals(GameWinner.O, gameManager.gameWinner)
+    }
+
 }
